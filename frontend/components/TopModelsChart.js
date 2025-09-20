@@ -1,0 +1,16 @@
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+
+export default function TopModelsChart({ data }){
+  return (
+    <ResponsiveContainer>
+      {/* reduce left margin and slightly reduce YAxis width to move bars left */}
+  <BarChart data={data} layout="vertical" margin={{left:0, right:20, top:5, bottom:5}}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis type="number" />
+  <YAxis dataKey="name" type="category" width={120} />
+        <Tooltip />
+        <Bar dataKey="count" fill="#10b981" />
+      </BarChart>
+    </ResponsiveContainer>
+  )
+}
