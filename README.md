@@ -1,47 +1,76 @@
-# MapUp - Analytics Dashboard Assessment
+# MapUp - Analytics Dashboard Assessment (Consolidated)
+
+## Live Dashboard
+
+Deployed URL: [https://analytics-dashboard-assessment-beta-six.vercel.app/](https://analytics-dashboard-assessment-beta-six.vercel.app/)
 
 ## Overview
 
-The objective of this assessment is to analyze the provided Electric Vehicle (EV) population data and create a frontend dashboard that visualizes key insights about the dataset. This repository contains the necessary data and instructions for you to demonstrate your analytical and dashboard creation skills. Feel free to use any tech stack you want to create the dashboard.
+This repository contains an end-to-end analytics dashboard for an Electric Vehicle (EV) population dataset. It includes Python scripts for data exploration and summary generation, plus a Next.js frontend (in `frontend/`) that renders charts using Recharts and Tailwind CSS.
 
-### We encourage the use of AI and LLM tools for this assessment! However, you must understand what you're building and be able to explain your implementation decisions.
+### Key pieces
 
-## Dataset
+- Data: `data-to-visualize/Electric_Vehicle_Population_Data.csv`
+- Data processing scripts: `scripts/` (exploration, insights, CSV→JSON conversion)
+- Generated outputs: `outputs/` (PNGs and CSV summaries)
+- Frontend: `frontend/` (Next.js app)
 
-The Electric Vehicle Population dataset is available in the [Electric Vehicle Population Data (CSV)](./data-to-visualize/Electric_Vehicle_Population_Data.csv) within this repository, for more information about the dataset visit [kaggle dataset](https://www.kaggle.com/datasets/willianoliveiragibin/electric-vehicle-population).
+## How to run locally
 
-**Note:** We've reduced the dataset in the repository to keep the data size small in the frontend bundle.
+1. Create & activate a Python virtual environment (optional but recommended):
 
-## Tasks
+```cmd
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-### Dashboard Creation:
+1. Install Python dependencies and run data scripts:
 
-- Create a frontend dashboard that presents key insights from the dataset.
-- Design the dashboard to effectively communicate important metrics and visualizations.
-- Include visual representations such as charts, graphs, or tables to showcase trends and relationships in the data.
-- Ensure the dashboard is user-friendly and intuitive for exploring the dataset.
+```cmd
+pip install -r requirements.txt
+python scripts/data_exploration.py
+python scripts/generate_insights.py
+```
 
-### Deployment:
+1. Generate the frontend JSON snapshot (optional):
 
-- Deploy your frontend dashboard to a hosting platform of your choice.
-- Make sure the dashboard is publicly accessible.
+```cmd
+.venv\Scripts\python.exe scripts/csv_to_frontend_json.py
+```
 
-## Evaluation Criteria
+1. Run the frontend (from repo root):
 
-Your submission will be evaluated based on:
+```cmd
+cd frontend
+npm install
+npm run dev
+```
 
-- **Analytical Depth:** The depth of your analysis and insights derived from the dataset.
-- **Dashboard Design:** Clarity, aesthetics, and usability of the frontend dashboard.
-- **Insightfulness:** Effectiveness in conveying key insights about electric vehicles.
+Open [http://localhost:3000](http://localhost:3000)
 
-## Submission Guidelines
+## Deploying to Vercel
 
-- Fork this repository to your GitHub account.
-- Complete your analysis and create the frontend dashboard.
-- Deploy the dashboard to a hosting platform.
-- Update this [README.md](README.md) file with the URL to your live dashboard.
-- **Repository Access:** Keep your repository private to avoid visibility by other candidates. Add the following email addresses as collaborators to the repository, these are our internal emails and will be evaluating your assessment:
-  - vedantp@mapup.ai
-  - ajayap@mapup.ai
-  - atharvd@mapup.ai
-- Finally, please fill out the google form that you received via email to submit the assessment for review.
+The project has been deployed to Vercel: [https://analytics-dashboard-assessment-beta-six.vercel.app/](https://analytics-dashboard-assessment-beta-six.vercel.app/)
+
+If you want to re-deploy from your account, import the repository in Vercel and set the Root Directory to `frontend`.
+
+## Collaborators (evaluation access)
+
+Please keep the repository private and add the following emails as collaborators so our evaluators can access the submission:
+
+If you need to add collaborators on GitHub, add these evaluator emails (recommended to keep the repo private):
+
+- `vedantp@mapup.ai`
+- `ajayap@mapup.ai`
+- `atharvd@mapup.ai`
+
+## Notes & Recommendations
+
+- The frontend currently reads a static JSON snapshot at `frontend/public/ev_data.json`. For production, prefer shipping smaller summary CSVs under `frontend/public/data/` 
+
+## Files of interest
+
+- `scripts/data_exploration.py` — initial exploration and plots
+- `scripts/generate_insights.py` — saves PNGs and CSV summaries to `outputs/`
+- `scripts/csv_to_frontend_json.py` — writes `frontend/public/ev_data.json`
+- `frontend/pages/index.js` — main dashboard page
