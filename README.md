@@ -54,15 +54,6 @@ The project has been deployed to Vercel: [https://analytics-dashboard-assessment
 
 If you want to re-deploy from your account, import the repository in Vercel and set the Root Directory to `frontend`.
 
-## Collaborators (evaluation access)
-
-Please keep the repository private and add the following emails as collaborators so our evaluators can access the submission:
-
-If you need to add collaborators on GitHub, add these evaluator emails (recommended to keep the repo private):
-
-- `vedantp@mapup.ai`
-- `ajayap@mapup.ai`
-- `atharvd@mapup.ai`
 
 ## Notes & Recommendations
 
